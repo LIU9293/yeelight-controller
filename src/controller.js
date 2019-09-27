@@ -1,17 +1,22 @@
 const { infoStore, yeeStore } = require('./store')
 
 async function updateInstance (id) {
-  const light = await yeeStore[id].sync()
-  infoStore[id] = {
-    name: light.name,
-    id: id,
-    ct: light.ct,
-    colorMode: light.colorMode,
-    on: light.power === 'on',
-    bright: light.bright,
-    music: light.music_on,
-    rgb: light.rgb,
-    name: light.name,
+  try {
+    const light = await yeeStore[id].sync()
+    infoStore[id] = {
+      name: light.name,
+      id: id,
+      ct: light.ct,
+      colorMode: light.colorMode,
+      on: light.power === 'on',
+      bright: light.bright,
+      music: light.music_on,
+      rgb: light.rgb,
+      name: light.name,
+    }
+    return
+  } catch (error) {
+    console.log(error)
   }
 }
 
