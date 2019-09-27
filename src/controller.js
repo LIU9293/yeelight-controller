@@ -11,8 +11,7 @@ async function updateInstance (id) {
       on: light.power === 'on',
       bright: light.bright,
       music: light.music_on,
-      rgb: light.rgb,
-      name: light.name,
+      rgb: light.rgb
     }
     return
   } catch (error) {
@@ -34,7 +33,6 @@ async function toggleLight (ctx) {
     const { id } = ctx.params
 
     if (!yeeStore[id]) return ctx.badRequest({ error: `id ${id} is not found` })
-
 
     yeeStore[id].toggle()
     await updateInstance(id)

@@ -1,4 +1,4 @@
-const Router =  require('koa-router')
+const Router = require('koa-router')
 const { getLights, toggleLight, setName, setBright } = require('./controller')
 const router = new Router()
 

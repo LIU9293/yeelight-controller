@@ -11,14 +11,13 @@ function getLights () {
       on: light.power === 'on',
       bright: light.bright,
       music: light.music_on,
-      rgb: light.rgb,
-      name: light.name,
+      rgb: light.rgb
     }
 
     yeeStore[light.id] = light
   })
 
-  console.log(`--- get lights succeed ---`)
+  console.log('--- get lights succeed ---')
 }
 
 module.exports = getLights

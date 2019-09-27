@@ -1,20 +1,20 @@
-const koa = require('koa')
-const cors =  require('@koa/cors')
+const Koa = require('koa')
+const cors = require('@koa/cors')
 const bodyParser = require('koa-bodyparser')
 const helmet = require('koa-helmet')
 const respond = require('koa-respond')
 const getLights = require('./src/getLights')
 const router = require('./src/routes')
 
-const app = new koa()
+const app = new Koa()
+
+app.on('error', (err, ctx) => {
+  console.log('server error', err, ctx)
+})
+
+getLights()
 
 async function go () {
-  app.on('error', (err, ctx) => {
-    console.log('server error', err, ctx)
-  })
-
-  getLights()
-  
   app.use(helmet())
   app.use(cors())
   app.use(bodyParser())
@@ -29,4 +29,3 @@ async function go () {
 }
 
 go()
-
